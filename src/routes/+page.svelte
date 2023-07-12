@@ -1,5 +1,6 @@
 <script>
-	const type = 'button';
+	import Button from '../components/Button.svelte';
+
 	let count = 0;
 	let numbers = [1, 2];
 	let object = { a: { b: 1 } };
@@ -27,22 +28,28 @@
 	const mutateObject = () => {
 		object.a.b += 1;
 	};
+	const mutateObjectWithDelay = () => {
+		setTimeout(() => {
+			object.a.b += 1;
+		}, 1500);
+	};
 	$: calculated = count + 1;
 	$: if (count > 3) console.log(count);
-	$: console.log(numbers);
-	$: console.log(object);
 </script>
 
 <div class="main">
 	<div>count: {count}</div>
 	<div>count + 1 = {calculated}</div>
-	<button {type} on:click={increase}> +1 </button>
-	<button {type} on:click={increaseWithDelay}> +1 + delay </button>
-	<button {type} on:click={updateArray}> [...array] </button>
-	<button {type} on:click={pushArray}> array.push </button>
-	<button {type} on:click={updateObject}> {'{...object}'} </button>
-	<button {type} on:click={mutateRefrencedObject}> mutate refrenced object </button>
-	<button {type} on:click={mutateObject}> mutate object </button>
+	<div>array: {[...numbers]}</div>
+	<div>object: {JSON.stringify(object)}</div>
+	<Button onClick={increase}>+1</Button>
+	<Button onClick={increaseWithDelay}>+1 + delay</Button>
+	<Button onClick={updateArray}>[...array]</Button>
+	<Button onClick={pushArray}>array.push</Button>
+	<Button onClick={updateObject}>{'{...object}'}</Button>
+	<Button onClick={mutateRefrencedObject}>mutate refrenced object</Button>
+	<Button onClick={mutateObject}>mutate object</Button>
+	<Button onClick={mutateObjectWithDelay}>mutate object with delay</Button>
 </div>
 
 <style>
