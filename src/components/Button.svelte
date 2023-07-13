@@ -18,6 +18,7 @@
 		border-radius: 5px;
 		cursor: pointer;
 		border: 1px solid transparent;
+		text-align: center;
 	}
 	button:hover {
 		background: rgb(69, 69, 69);
