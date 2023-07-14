@@ -1,6 +1,7 @@
 <script>
 	import Box from '../components/Box.svelte';
 	import Button from '../components/Button.svelte';
+	import Dispatcher from '../components/Dispatcher.svelte';
 	import ListItem from '../components/ListItem.svelte';
 
 	let count = 0;
@@ -65,20 +66,20 @@
 			3
 		</div>
 		<div>count + 1 = {calculated}</div>
-		<Button onClick={increase}>+1</Button>
-		<Button onClick={increaseWithDelay}>+1 + delay</Button>
+		<Button on:click={increase}>+1</Button>
+		<Button on:click={increaseWithDelay}>+1 + delay</Button>
 	</Box>
 	<Box>
 		<div>array: {[...numbers]}</div>
-		<Button onClick={updateArray}>[...array]</Button>
-		<Button onClick={pushArray}>array.push</Button></Box
+		<Button on:click={updateArray}>[...array]</Button>
+		<Button on:click={pushArray}>array.push</Button></Box
 	>
 	<Box>
 		<div>object: {JSON.stringify(object)}</div>
-		<Button onClick={updateObject}>{'{...object}'}</Button>
-		<Button onClick={mutateRefrencedObject}>mutate refrenced object</Button>
-		<Button onClick={mutateObject}>mutate object</Button>
-		<Button onClick={mutateObjectWithDelay}>mutate object with delay</Button></Box
+		<Button on:click={updateObject}>{'{...object}'}</Button>
+		<Button on:click={mutateRefrencedObject}>mutate refrenced object</Button>
+		<Button on:click={mutateObject}>mutate object</Button>
+		<Button on:click={mutateObjectWithDelay}>mutate object with delay</Button></Box
 	>
 	<Box>
 		<div class="numbers">
@@ -93,7 +94,7 @@
 				<ListItem value={number.value}>{number.value}</ListItem>
 			{/each}
 		</div>
-		<Button onClick={sliceArray}>arrayWithId.slice(1)</Button>
+		<Button on:click={sliceArray}>arrayWithId.slice(1)</Button>
 	</Box>
 	<Box>
 		{#await promise()}
@@ -103,6 +104,14 @@
 		{:catch error}
 			error: {error}
 		{/await}
+	</Box>
+	<Box>
+		<div class="events" on:click|self={() => alert('self')}>
+			<div on:click|once={() => alert('once')}>
+				<div on:click|stopPropagation={() => alert('stopPropagation')}>click</div>
+			</div>
+		</div>
+		<Dispatcher on:dispatch|once={() => alert('dispatch')}>dispatch|once</Dispatcher>
 	</Box>
 </div>
 
@@ -119,5 +128,23 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.1rem;
+	}
+	.events {
+		border: 1px solid rgb(94, 94, 94);
+		padding: 1rem;
+		cursor: pointer;
+		border-radius: 8px;
+	}
+	.events:hover {
+		background-color: rgba(64, 64, 64, 0.207);
+	}
+	.events div {
+		border: 1px solid rgb(94, 94, 94);
+		padding: 1rem;
+		cursor: pointer;
+		border-radius: 8px;
+	}
+	.events div:hover {
+		background-color: rgba(245, 245, 220, 0.207);
 	}
 </style>

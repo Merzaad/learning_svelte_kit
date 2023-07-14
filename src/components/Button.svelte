@@ -1,11 +1,4 @@
-<script>
-	/**
-	 * @type {any}
-	 */
-	export let onClick;
-</script>
-
-<button on:click={onClick}>
+<button on:click>
 	<slot />
 </button>
 
