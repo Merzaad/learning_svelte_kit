@@ -12,6 +12,11 @@
 		{ id: 3, value: 'c' }
 	];
 	let object = { a: { b: 1 } };
+	let inputValues = ['intial', 0, 0];
+	let checkbox = false;
+	let selections = [{ value: 1 }, { value: 2 }, { value: 3 }];
+	let selected = 1;
+	let textArea = 'abcd';
 	const increase = () => {
 		count += 1;
 	};
@@ -112,6 +117,25 @@
 			</div>
 		</div>
 		<Dispatcher on:dispatch|once={() => alert('dispatch')}>dispatch|once</Dispatcher>
+	</Box>
+	<Box>
+		{inputValues}
+		<input type="text" bind:value={inputValues[0]} />
+		<input type="number" bind:value={inputValues[1]} />
+		<input type="range" min="0" max="4" bind:value={inputValues[2]} />
+		<div>
+			<input type="checkbox" bind:checked={checkbox} />
+			{checkbox}
+		</div>
+		<div>
+			selected: {selected}
+			<select bind:value={selected}>
+				{#each selections as selection}
+					<option value={selection.value}>{selection.value}</option>
+				{/each}
+			</select>
+		</div>
+		<textarea bind:value={textArea} />
 	</Box>
 </div>
 
