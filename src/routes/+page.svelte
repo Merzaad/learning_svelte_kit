@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte';
 	import Box from '../components/Box.svelte';
 	import Button from '../components/Button.svelte';
 	import Dispatcher from '../components/Dispatcher.svelte';
@@ -49,14 +50,15 @@
 			object.a.b += 1;
 		}, 1500);
 	};
-	$: calculated = count + 1;
-	$: if (count > 3) console.log(count);
 	const promise = () =>
 		new Promise((resolve) => {
 			setTimeout(() => {
 				resolve(1);
 			}, 3000);
 		});
+
+	$: calculated = count + 1;
+	$: if (count > 3) console.log(count);
 </script>
 
 <div class="main">
