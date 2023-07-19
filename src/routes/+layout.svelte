@@ -1,12 +1,11 @@
 <script>
-	/* 	import { page } from '$app/stores';
-	const { url } = $page; */
-	const pages = ['/basic', '/lifecycle', '/store', '/', '/dynamic'];
+	export let data;
 </script>
 
 <nav>
-	{#each pages as page}
-		<a class="nav" href={page}>{page.slice(1) || 'home'}</a>
+	<a class="nav" href="/">home</a>
+	{#each data.pages as page}
+		<a class="nav" href={page}>{page.slice(1)}</a>
 	{/each}
 </nav>
 <div class="outlet">

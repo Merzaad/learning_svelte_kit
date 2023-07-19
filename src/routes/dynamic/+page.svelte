@@ -1,7 +1,30 @@
+<script>
+	import { onDestroy } from 'svelte';
+
+	/**
+	 * @type {number}
+	 */
+	let timer;
+	/**
+	 * @type {number}
+	 */
+	let interval;
+	const startTimer = () => {
+		timer = 2;
+		interval = setInterval(() => {
+			timer -= 1;
+		}, 1000);
+	};
+	onDestroy(() => {
+		clearInterval(interval);
+	});
+</script>
+
 <div class="dynamic">
-	<a href="dynamic/1">1</a>
-	<a href="dynamic/2">2</a>
-	<a href="dynamic/3">3</a>
+	<a on:click={startTimer} href="dynamic/1">1</a>
+	<a on:click={startTimer} href="dynamic/2">2</a>
+	<a on:click={startTimer} href="dynamic/3">3</a>
+	{timer ? timer : ''}
 </div>
 
 <style>

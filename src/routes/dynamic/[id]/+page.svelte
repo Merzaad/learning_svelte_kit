@@ -1,8 +1,8 @@
 <script>
-	import { page } from '$app/stores';
+	export let data;
 </script>
 
-<div class="dynamic">{$page.params.id}</div>
+<div class="dynamic">{data.value}</div>
 
 <style>
 	.dynamic {
