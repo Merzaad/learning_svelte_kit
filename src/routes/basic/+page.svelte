@@ -148,7 +148,6 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 1rem;
-		min-height: 100vh;
 	}
 	.numbers {
 		display: flex;

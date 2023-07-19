@@ -1,7 +1,11 @@
-<div class="home">home</div>
+<script>
+	import { page } from '$app/stores';
+</script>
+
+<div class="dynamic">{$page.params.id}</div>
 
 <style>
-	.home {
+	.dynamic {
 		display: flex;
 		justify-content: center;
 		align-items: center;
