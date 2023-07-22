@@ -8,6 +8,9 @@
 		<a class="nav" href={page}>{page.slice(1)}</a>
 	{/each}
 </nav>
+{#if !data.visited}
+	<div class="firstVisit">first time visiting</div>
+{/if}
 <div class="outlet">
 	<slot />
 </div>
@@ -35,6 +38,9 @@
 	}
 	.nav:hover {
 		background: rgba(58, 57, 57, 0.343);
+	}
+	.firstVisit {
+		text-align: center;
 	}
 	.outlet {
 		padding: 1rem 0;

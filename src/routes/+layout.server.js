@@ -1,5 +1,9 @@
-export const load = () => {
+export const load = ({ cookies }) => {
+	const visited = cookies.get('visited');
+	cookies.set('visited', 'true');
+
 	return {
-		pages: ['/basic', '/lifecycle', '/store', '/dynamic']
+		pages: ['/basic', '/lifecycle', '/store', '/dynamic'],
+		visited
 	};
 };
