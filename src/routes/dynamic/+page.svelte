@@ -1,16 +1,16 @@
 <script>
+	import { navigating } from '$app/stores';
 	import { onDestroy } from 'svelte';
 
 	/**
 	 * @type {number}
 	 */
-	let timer;
+	let timer = 2;
 	/**
 	 * @type {number}
 	 */
 	let interval;
 	const startTimer = () => {
-		timer = 2;
 		interval = setInterval(() => {
 			timer -= 1;
 		}, 1000);
@@ -24,7 +24,15 @@
 	<a on:click={startTimer} href="dynamic/1">1</a>
 	<a on:click={startTimer} href="dynamic/2">2</a>
 	<a on:click={startTimer} href="dynamic/3">3</a>
-	{timer ? timer : ''}
+	<a on:click={startTimer} href="dynamic/4">4 redirect</a>
+	<a on:click={startTimer} href="dynamic/5">error</a>
+	{#if $navigating}
+		{timer}
+		<br />
+		from: {$navigating.from?.url.pathname}
+		<br />
+		to: {$navigating.to?.url.pathname}
+	{/if}
 </div>
 
 <style>

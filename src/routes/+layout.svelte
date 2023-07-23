@@ -1,11 +1,13 @@
 <script>
+	import { page } from '$app/stores';
 	export let data;
+	$: pathname = $page.url.pathname;
 </script>
 
 <nav>
-	<a class="nav" href="/">home</a>
+	<a class={`nav ${pathname === '/' ? 'active' : ''}`} href="/">home</a>
 	{#each data.pages as page}
-		<a class="nav" href={page}>{page.slice(1)}</a>
+		<a class={`nav ${pathname.includes(page) ? 'active' : ''}`} href={page}>{page.slice(1)}</a>
 	{/each}
 </nav>
 {#if !data.visited}
@@ -38,6 +40,10 @@
 	}
 	.nav:hover {
 		background: rgba(58, 57, 57, 0.343);
+	}
+	.active {
+		border: 1px solid teal;
+		color: teal;
 	}
 	.firstVisit {
 		text-align: center;

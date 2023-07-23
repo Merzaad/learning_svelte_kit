@@ -3,7 +3,7 @@ export const load = ({ cookies }) => {
 	cookies.set('visited', 'true');
 
 	return {
-		pages: ['/basic', '/lifecycle', '/store', '/dynamic'],
+		pages: ['/basic', '/lifecycle', '/store', '/dynamic', '/error'],
 		visited
 	};
 };
